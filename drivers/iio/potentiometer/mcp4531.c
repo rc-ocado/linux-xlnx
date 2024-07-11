@@ -40,6 +40,7 @@ struct mcp4531_cfg {
 	int wipers;
 	int max_pos;
 	int kohms;
+	int eeprom;
 };
 
 enum mcp4531_type {
@@ -78,38 +79,38 @@ enum mcp4531_type {
 };
 
 static const struct mcp4531_cfg mcp4531_cfg[] = {
-	[MCP453x_502] = { .wipers = 1, .max_pos = 128, .kohms =   5, },
-	[MCP453x_103] = { .wipers = 1, .max_pos = 128, .kohms =  10, },
-	[MCP453x_503] = { .wipers = 1, .max_pos = 128, .kohms =  50, },
-	[MCP453x_104] = { .wipers = 1, .max_pos = 128, .kohms = 100, },
-	[MCP454x_502] = { .wipers = 1, .max_pos = 128, .kohms =   5, },
-	[MCP454x_103] = { .wipers = 1, .max_pos = 128, .kohms =  10, },
-	[MCP454x_503] = { .wipers = 1, .max_pos = 128, .kohms =  50, },
-	[MCP454x_104] = { .wipers = 1, .max_pos = 128, .kohms = 100, },
-	[MCP455x_502] = { .wipers = 1, .max_pos = 256, .kohms =   5, },
-	[MCP455x_103] = { .wipers = 1, .max_pos = 256, .kohms =  10, },
-	[MCP455x_503] = { .wipers = 1, .max_pos = 256, .kohms =  50, },
-	[MCP455x_104] = { .wipers = 1, .max_pos = 256, .kohms = 100, },
-	[MCP456x_502] = { .wipers = 1, .max_pos = 256, .kohms =   5, },
-	[MCP456x_103] = { .wipers = 1, .max_pos = 256, .kohms =  10, },
-	[MCP456x_503] = { .wipers = 1, .max_pos = 256, .kohms =  50, },
-	[MCP456x_104] = { .wipers = 1, .max_pos = 256, .kohms = 100, },
-	[MCP463x_502] = { .wipers = 2, .max_pos = 128, .kohms =   5, },
-	[MCP463x_103] = { .wipers = 2, .max_pos = 128, .kohms =  10, },
-	[MCP463x_503] = { .wipers = 2, .max_pos = 128, .kohms =  50, },
-	[MCP463x_104] = { .wipers = 2, .max_pos = 128, .kohms = 100, },
-	[MCP464x_502] = { .wipers = 2, .max_pos = 128, .kohms =   5, },
-	[MCP464x_103] = { .wipers = 2, .max_pos = 128, .kohms =  10, },
-	[MCP464x_503] = { .wipers = 2, .max_pos = 128, .kohms =  50, },
-	[MCP464x_104] = { .wipers = 2, .max_pos = 128, .kohms = 100, },
-	[MCP465x_502] = { .wipers = 2, .max_pos = 256, .kohms =   5, },
-	[MCP465x_103] = { .wipers = 2, .max_pos = 256, .kohms =  10, },
-	[MCP465x_503] = { .wipers = 2, .max_pos = 256, .kohms =  50, },
-	[MCP465x_104] = { .wipers = 2, .max_pos = 256, .kohms = 100, },
-	[MCP466x_502] = { .wipers = 2, .max_pos = 256, .kohms =   5, },
-	[MCP466x_103] = { .wipers = 2, .max_pos = 256, .kohms =  10, },
-	[MCP466x_503] = { .wipers = 2, .max_pos = 256, .kohms =  50, },
-	[MCP466x_104] = { .wipers = 2, .max_pos = 256, .kohms = 100, },
+	[MCP453x_502] = { .wipers = 1, .max_pos = 128, .kohms =   5, .eeprom = 0, },
+	[MCP453x_103] = { .wipers = 1, .max_pos = 128, .kohms =  10, .eeprom = 0, },
+	[MCP453x_503] = { .wipers = 1, .max_pos = 128, .kohms =  50, .eeprom = 0, },
+	[MCP453x_104] = { .wipers = 1, .max_pos = 128, .kohms = 100, .eeprom = 0, },
+	[MCP454x_502] = { .wipers = 1, .max_pos = 128, .kohms =   5, .eeprom = 1, },
+	[MCP454x_103] = { .wipers = 1, .max_pos = 128, .kohms =  10, .eeprom = 1, },
+	[MCP454x_503] = { .wipers = 1, .max_pos = 128, .kohms =  50, .eeprom = 1, },
+	[MCP454x_104] = { .wipers = 1, .max_pos = 128, .kohms = 100, .eeprom = 1, },
+	[MCP455x_502] = { .wipers = 1, .max_pos = 256, .kohms =   5, .eeprom = 0, },
+	[MCP455x_103] = { .wipers = 1, .max_pos = 256, .kohms =  10, .eeprom = 0, },
+	[MCP455x_503] = { .wipers = 1, .max_pos = 256, .kohms =  50, .eeprom = 0, },
+	[MCP455x_104] = { .wipers = 1, .max_pos = 256, .kohms = 100, .eeprom = 0, },
+	[MCP456x_502] = { .wipers = 1, .max_pos = 256, .kohms =   5, .eeprom = 1, },
+	[MCP456x_103] = { .wipers = 1, .max_pos = 256, .kohms =  10, .eeprom = 1, },
+	[MCP456x_503] = { .wipers = 1, .max_pos = 256, .kohms =  50, .eeprom = 1, },
+	[MCP456x_104] = { .wipers = 1, .max_pos = 256, .kohms = 100, .eeprom = 1, },
+	[MCP463x_502] = { .wipers = 2, .max_pos = 128, .kohms =   5, .eeprom = 0, },
+	[MCP463x_103] = { .wipers = 2, .max_pos = 128, .kohms =  10, .eeprom = 0, },
+	[MCP463x_503] = { .wipers = 2, .max_pos = 128, .kohms =  50, .eeprom = 0, },
+	[MCP463x_104] = { .wipers = 2, .max_pos = 128, .kohms = 100, .eeprom = 0, },
+	[MCP464x_502] = { .wipers = 2, .max_pos = 128, .kohms =   5, .eeprom = 1, },
+	[MCP464x_103] = { .wipers = 2, .max_pos = 128, .kohms =  10, .eeprom = 1, },
+	[MCP464x_503] = { .wipers = 2, .max_pos = 128, .kohms =  50, .eeprom = 1, },
+	[MCP464x_104] = { .wipers = 2, .max_pos = 128, .kohms = 100, .eeprom = 1, },
+	[MCP465x_502] = { .wipers = 2, .max_pos = 256, .kohms =   5, .eeprom = 0, },
+	[MCP465x_103] = { .wipers = 2, .max_pos = 256, .kohms =  10, .eeprom = 0, },
+	[MCP465x_503] = { .wipers = 2, .max_pos = 256, .kohms =  50, .eeprom = 0, },
+	[MCP465x_104] = { .wipers = 2, .max_pos = 256, .kohms = 100, .eeprom = 0, },
+	[MCP466x_502] = { .wipers = 2, .max_pos = 256, .kohms =   5, .eeprom = 1, },
+	[MCP466x_103] = { .wipers = 2, .max_pos = 256, .kohms =  10, .eeprom = 1, },
+	[MCP466x_503] = { .wipers = 2, .max_pos = 256, .kohms =  50, .eeprom = 1, },
+	[MCP466x_104] = { .wipers = 2, .max_pos = 256, .kohms = 100, .eeprom = 1, },
 };
 
 #define MCP4531_WRITE (0 << 2)
@@ -118,6 +119,7 @@ static const struct mcp4531_cfg mcp4531_cfg[] = {
 #define MCP4531_READ  (3 << 2)
 
 #define MCP4531_WIPER_SHIFT (4)
+#define MCP4531_NONVOLATILE_OFFSET (2)
 
 struct mcp4531_data {
 	struct i2c_client *client;
@@ -169,6 +171,7 @@ static int mcp4531_write_raw(struct iio_dev *indio_dev,
 {
 	struct mcp4531_data *data = iio_priv(indio_dev);
 	int address = chan->channel << MCP4531_WIPER_SHIFT;
+	int ret, nonvolatile_addr;
 
 	switch (mask) {
 	case IIO_CHAN_INFO_RAW:
@@ -177,6 +180,16 @@ static int mcp4531_write_raw(struct iio_dev *indio_dev,
 		break;
 	default:
 		return -EINVAL;
+	}
+
+	if (data->cfg->eeprom) {
+		nonvolatile_addr = (chan->channel + MCP4531_NONVOLATILE_OFFSET) << MCP4531_WIPER_SHIFT;
+		ret = i2c_smbus_write_byte_data(data->client,
+						MCP4531_WRITE | nonvolatile_addr | (val >> 8),
+						val & 0xff);
+		if (ret < 0) {
+			return ret;
+		}
 	}
 
 	return i2c_smbus_write_byte_data(data->client,
